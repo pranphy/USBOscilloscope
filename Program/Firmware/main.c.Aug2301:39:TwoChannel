@@ -1,0 +1,121 @@
+
+
+
+#include <avr/io.h>
+#include <avr/wdt.h>
+#include <avr/interrupt.h>  
+#include <util/delay.h>     
+
+#include <avr/pgmspace.h>   
+#include "usbdrv.h"
+#include "oddebug.h"        
+
+
+#define USB_DATA_OUT		2
+#define USB_CHANNEL_TWO		3
+
+uchar Data[]="A";
+ 
+PROGMEM const char usbHidReportDescriptor[22] = {   
+    0x06, 0x00, 0xff,              
+    0x09, 0x01,                    
+    0xa1, 0x01,
+    0x15, 0x00,
+    0x26, 0xff, 0x00,
+    0x75, 0x08,
+    0x95, 0x80,
+    0x09, 0x00,
+    0xb2, 0x02, 0x01,
+    0xc0
+};
+
+
+USB_PUBLIC uchar usbFunctionSetup(uchar*); 
+int ADCsingleREAD();
+
+int main()
+{
+	uchar i;
+	DDRB |=(1<<DDB1); // PB1 as output
+	wdt_enable(WDTO_1S); // enable 1s watchdog timer
+	usbInit();
+	usbDeviceDisconnect(); // enforce re-enumeration
+	for(i = 0; i<250; i++) 
+	{ 
+		wdt_reset(); 
+		_delay_ms(2);
+	}
+	usbDeviceConnect();
+
+	sei();
+
+	while(1)
+	{
+		wdt_reset(); 
+		usbPoll();
+	}
+	return 0;
+}
+
+
+
+
+USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) 
+{
+    usbRequest_t *rq = (void *)data;
+        
+    switch(rq->bRequest)
+    { 
+		case USB_LED_ON:
+			PORTB |=(1<<PORTB1); 
+			return 0;
+		case USB_LED_OFF: 
+			PORTB &= ~(1<<PORTB1);
+			return 0;
+		case USB_DATA_OUT:
+			Data[0]=ADCsingleREAD();
+			usbMsgPtr=Data;
+			return sizeof(Data);
+		case USB_CHANNEL_TWO:
+			Data[0]=ADCReadNext();
+			usbMsgPtr=Data;
+			return sizeof(Data);
+    }
+
+    return 0;
+}
+
+
+
+int ADCsingleREAD()
+{
+    int val;    
+    ADMUX =0x00;                 // use ADC0 (ADMUX 0..4 should be low so, initialized 0x00 here)
+    ADMUX |= (1 << REFS0);       // use AVcc as the reference
+    ADMUX |= (1 << ADLAR);       // Left alignment
+    ADCSRA |= (1 << ADPS2);      // 16 prescale for 
+    ADCSRA |= (1 << ADEN);       // Enable the ADC
+    ADCSRA |= (1 << ADSC);       // Start the ADC conversion
+
+    while(ADCSRA & (1 << ADSC)); //Wait until conversion completes
+	val=ADCH;
+    return val;
+}
+
+int ADCReadNext()
+{
+	int val=0;    
+    ADMUX=0x01;                 // use ADC0 (ADMUX 0..4 should be low so, initialized 0x00 here)
+    ADMUX |= (1 << REFS0);       // use AVcc as the reference
+    ADMUX |= (1 << ADLAR);       // Left alignment
+    ADCSRA |= (1 << ADPS2);      // 16 prescale for 
+    ADCSRA |= (1 << ADEN);       // Enable the ADC
+    ADCSRA |= (1 << ADSC);       // Start the ADC conversion
+
+    while(ADCSRA & (1 << ADSC)); //Wait until conversion completes
+	val=ADCH;
+    return val;
+	
+}
+
+

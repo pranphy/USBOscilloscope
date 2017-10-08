@@ -1,0 +1,43 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Preface}}{3}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-2000}{QQ2-1-2}{Contents}}{4}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-3000}{QQ2-1-3}{List of Figures}}{5}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-4000}{QQ2-1-4}{List of Tables}}{5}\relax 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-50001}{QQ2-1-5}{Introduction}}{1}\relax 
+\doTocEntry\tocsubsection{1.1}{\csname a:TocLink\endcsname{1}{x1-60001.1}{QQ2-1-6}{Analogue Oscilloscope}}{1}\relax 
+\doTocEntry\tocsubsection{1.2}{\csname a:TocLink\endcsname{1}{x1-70001.2}{QQ2-1-7}{Digital Oscilloscope}}{2}\relax 
+\doTocEntry\tocsubsection{1.3}{\csname a:TocLink\endcsname{1}{x1-80001.3}{QQ2-1-8}{USB Oscilloscope}}{2}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-90002}{QQ2-1-9}{Objectives}}{2}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-100003}{QQ2-1-10}{Hardware Selection and Software}}{3}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-110003.1}{QQ2-1-11}{Microcontroller}}{3}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-110011}{}{\ignorespaces Atmega16 Pinout}}{figure}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-120003.2}{QQ2-1-13}{Voltage attenuator}}{3}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-120012}{}{\ignorespaces Instrumentation Amplifier}}{figure}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-130003.3}{QQ2-1-15}{Program Compiler and Up-loader}}{3}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-130013}{}{\ignorespaces Programmer Software Interface}}{figure}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-140004}{QQ2-1-17}{System Block Diagram}}{3}\relax 
+\doTocEntry\toclof{4}{\csname a:TocLink\endcsname{1}{x1-140014}{}{\ignorespaces Block Diagram}}{figure}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-150005}{QQ2-1-19}{Circuit Schematics}}{4}\relax 
+\doTocEntry\toclof{5}{\csname a:TocLink\endcsname{1}{x1-150015}{}{\ignorespaces Circuit schematics }}{figure}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-160006}{QQ2-1-21}{Basic operation}}{4}\relax 
+\doTocEntry\tocsubsection{6.1}{\csname a:TocLink\endcsname{1}{x1-170006.1}{QQ2-1-22}{Inputting a signal}}{4}\relax 
+\doTocEntry\tocsubsection{6.2}{\csname a:TocLink\endcsname{1}{x1-180006.2}{QQ2-1-23}{Analog to Digital Conversion}}{4}\relax 
+\doTocEntry\toclot{1}{\csname a:TocLink\endcsname{1}{x1-180011}{}{\ignorespaces ADC Conversion Time}}{table}\relax 
+\doTocEntry\tocsubsection{6.3}{\csname a:TocLink\endcsname{1}{x1-190006.3}{QQ2-1-25}{Sensing}}{5}\relax 
+\doTocEntry\tocsubsection{6.4}{\csname a:TocLink\endcsname{1}{x1-200006.4}{QQ2-1-26}{Communication with PC}}{6}\relax 
+\doTocEntry\tocsubsection{6.5}{\csname a:TocLink\endcsname{1}{x1-210006.5}{QQ2-1-27}{Firmware}}{6}\relax 
+\doTocEntry\tocsubsection{6.6}{\csname a:TocLink\endcsname{1}{x1-220006.6}{QQ2-1-28}{Host Software}}{7}\relax 
+\doTocEntry\tocsubsection{6.7}{\csname a:TocLink\endcsname{1}{x1-230006.7}{QQ2-1-29}{Graph Plotter}}{7}\relax 
+\doTocEntry\toclof{6}{\csname a:TocLink\endcsname{1}{x1-230016}{}{\ignorespaces Oscilloscope display interface}}{figure}\relax 
+\doTocEntry\tocsubsubsection{6.7.1}{\csname a:TocLink\endcsname{1}{x1-240006.7.1}{QQ2-1-31}{The Trace}}{7}\relax 
+\doTocEntry\tocsubsubsection{6.7.2}{\csname a:TocLink\endcsname{1}{x1-250006.7.2}{QQ2-1-32}{Vertical and Horizontal Sensitivity control}}{7}\relax 
+\doTocEntry\tocsubsubsection{6.7.3}{\csname a:TocLink\endcsname{1}{x1-260006.7.3}{QQ2-1-33}{Hold}}{8}\relax 
+\doTocEntry\tocsection{7}{\csname a:TocLink\endcsname{1}{x1-270007}{QQ2-1-34}{Outputs}}{8}\relax 
+\doTocEntry\toclof{7}{\csname a:TocLink\endcsname{1}{x1-270017}{}{\ignorespaces Square Wave}}{figure}\relax 
+\doTocEntry\tocsection{8}{\csname a:TocLink\endcsname{1}{x1-280008}{QQ2-1-36}{Features}}{8}\relax 
+\doTocEntry\tocsection{9}{\csname a:TocLink\endcsname{1}{x1-290009}{QQ2-1-37}{Budget}}{9}\relax 
+\doTocEntry\toclot{2}{\csname a:TocLink\endcsname{1}{x1-290012}{}{\ignorespaces Component Cost}}{table}\relax 
+\doTocEntry\tocsection{10}{\csname a:TocLink\endcsname{1}{x1-3000010}{QQ2-1-39}{Future Enhancements}}{10}\relax 
+\doTocEntry\tocsection{11}{\csname a:TocLink\endcsname{1}{x1-3100011}{QQ2-1-40}{Conclusion}}{10}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-3200011}{QQ2-1-41}{References}}{11}\relax 
+\par 

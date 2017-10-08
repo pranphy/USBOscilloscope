@@ -1,0 +1,160 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{AnnArbor}
+\setbeamertemplate{navigation symbols}[default]
+\usepackage{pgfpages}
+
+%\useinnertheme{rectangles}
+
+%\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=5mm]
+\usecolortheme{rose}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+
+\author{Madhav Humagain\\ Prakash Gautam\\}
+\title{Life of a Student\\ And the way Forward}
+\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+
+%\logo{} 
+%\institute{IOE Pulchowk Campus} 
+
+\date{\today} 
+\subject{Physics} 
+
+\begin{document}
+ 
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+\newpage
+
+\section{Introduction}
+\begin{frame}{Introduction}
+
+
+\begin{itemize}
+\item USB Based Oscilloscope.
+\pause
+\item Converts analog signal to digital, sends them to PC and
+\pause
+\item Displays The waveform in computer screen.
+\pause
+\end{itemize}
+\end{frame}
+
+
+\section{Objectives}
+\begin{frame}
+\frametitle{Objectives}
+\framesubtitle{Why is the project being carried out?}
+
+\begin{enumerate}
+\item<1-> To accomplish the IOE course requirement.
+\item<2-> To integrate hardware and software firmly.
+\item<3-> To make life easy for students and researchers providing them with cheap oscilloscope.
+\item<4-> Make a useful embeded system, not just a project for shake of project
+\end{enumerate}
+\uncover<5-> {To increase team collabration and carry out group project }
+\end{frame}
+
+
+\section{Features}
+\begin{frame}
+	\frametitle{What is so special about this oscilloscope?}
+	\begin{block}{Answered Questions}
+		How many primes are there?
+	\end{block}
+	
+	\begin{block}{Open Questions}
+Is every even number the sum of two primes?
+\end{block}
+\end{frame}
+\section{Software Selection}
+\begin{frame}
+\frametitle{What’s Still To Do?}
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Answered Questions}
+How many primes are there?
+\end{block}
+\column{.5\textwidth}
+\begin{block}{Open Questions}
+Is every even number the sum of two primes?
+\end{block}
+\end{columns}
+\end{frame}
+
+\section{Works Completed}
+\begin{frame}[fragile]
+\frametitle{An Algorithm For Finding Primes Numbers.}
+\begin{verbatim}
+int main (void)
+{
+    std::vector<bool> is_prime (100, true);
+    for (int i = 2; i < 100; i++)
+    if (is_prime[i])
+    {
+        std::cout << i << " ";
+        for (int j=i;j<100;is_prime[j]=false, j+=i);
+    }
+    return 0;
+}
+\end{verbatim}
+\begin{uncoverenv}<2>
+Note the use of \verb|std::|.
+\end{uncoverenv}
+\end{frame}
+\section{Budgets}
+\begin{frame}[fragile]
+\frametitle{An Algorithm For Finding Primes Numbers.}
+\begin{semiverbatim}
+\uncover<1->{\alert<0>{int main (void)}}
+\uncover<1->{\alert<0>{\{}}
+\uncover<1->{\alert<1>{ \alert<4>{std::}vector<bool> is_prime (100, true);}}
+\uncover<1->{\alert<1>{ for (int i = 2; i < 100; i++)}}
+\uncover<2->{\alert<2>{
+if (is_prime[i])}}
+\uncover<2->{\alert<0>{
+\{}}
+\uncover<3->{\alert<3>{
+\alert<4>{std::}cout << i << " ";}}
+\uncover<3->{\alert<3>{
+for (int j = i; j < 100;}}
+\uncover<3->{\alert<3>{
+is_prime [j] = false, j+=i);}}
+\uncover<2->{\alert<0>{
+\}}}
+\uncover<1->{\alert<0>{ return 0;}}
+\uncover<1->{\alert<0>{\}}}
+\end{semiverbatim}
+\visible<4->{Note the use of \alert{\texttt{std::}}.}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+Shown on first slide.
+\onslide<2-3>
+Shown on second and third slide.
+\begin{itemize}
+\item
+Still shown on the second and third slide.
+\onslide+<4->
+\item
+Shown from slide 4 on.
+\end{itemize}
+Shown from slide 4 on.
+\onslide
+Shown on all slides.
+\end{frame}
+\end{document}

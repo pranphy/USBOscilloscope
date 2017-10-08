@@ -1,0 +1,344 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,top=35mm,right=20mm,left=35mm,bottom=20mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\hypersetup{pdfborder={0 0 0}}
+%\usepackage{tikz}
+%\usepackage{pstricks}
+\usepackage{graphicx}
+\author{Prakash Gautam}
+\begin{document}
+\begin{titlepage}
+	\input{./Sources/TitlePage.tex}
+\end{titlepage}
+
+\pagenumbering{roman}
+\vfill
+\input{./Sources/ApprovalPage.tex}
+\vfill
+\newpage
+
+\input{./Sources/Copyright.tex}
+\newpage
+\input{./Sources/Acknowledgement.tex}
+\newpage
+\tableofcontents
+
+\newpage
+\listoffigures
+
+\listoftables
+\newpage
+
+\input{./Sources/Abstract.tex}
+\pagenumbering{arabic}
+
+\section{Introduction}
+One of the most frequent experiments students and researchers would do, working on study of electrical signals is to trace out the waveform of the signal as a function of time. This is what an Oscilloscope does. But the price that is attached with a modern day Oscilloscope of a reasonable performance is beyond reach of many students. \\
+
+The usefulness of an oscilloscope is well known to the students of science and engineering. More often than not while studying various electronics components for learning purpose, students of engineering need to observe the behavioral change of an electrical signal over time. The observed waveform can be analyzed for the properties such as amplitude, frequency, rise time, time interval, distortion and others. For experimenting or being engaged with some projects as well, students need to observe the waveforms of the input signals. Therefore, oscilloscope is very useful device for modern day students \\
+
+In context of countries like Nepal, schools and colleges check their budget twice before even thinking of buying a new oscilloscope, let alone the curious students like us who can't even think of it.\\
+
+But since computers have been vastly cheap and well within the reach of people in general, it makes sense to use the computational power of a computer to do the job of an oscilloscope. Our project is based upon the same idea of making oscilloscope assuming the availability of computer with relative ease than an oscilloscope. \\
+
+Furthermore, parents would rather buy a multipurpose computer rather than an oscilloscope. Additional small aid box beside that computer making it function as an oscilloscope does sound extremely great. \\
+
+Oscilloscopes fall into variety of categories. The biggest distinction is whether they are analogue or digital, but within the digital oscilloscope arena there are ordinary digital oscilloscopes, digital storage oscilloscopes, digital phosphor oscilloscopes, and digital sampling oscilloscopes.
+
+\subsection{Analogue Oscilloscope}
+	The analogue oscilloscope of the original type of oscilloscope. As the name implies it uses analogue techniques throughout to create the pattern on the display. Typically they use a cathode ray tube where the voltages on the $x$ and $y$ plats cause a dot on the screen to move. In the horizontal direction this is controlled by the time base, whereas in the vertical direction the deflection is proportional to the signal input. Essentially the signal is amplified and applied to the Y plates of the cathode ray tube using analogue technology
+
+\subsection{Digital Oscilloscope}
+	The concept behind the digital oscilloscope is somewhat different to an analogue scope. Rather than processing the signals in an analogue fashion, this type of scope converts the signal into a digital format using an analogue to digital converter and then processes the signals digitally. With digital signal processing hardware and software becoming more powerful, this enables the processing of the signals to be undertaken in a far more flexible manner, and enables many additional features to be included within the scope. Updates and additional functionality can then be made by simply upgrading the software of firmware within the scope.
+	
+\subsection{USB Oscilloscope} 
+	One particular variant this approach that has become very popular what is often termed the USB oscilloscope the name implies, the USB oscilloscope interface with a PC using the USB connector. This provides an effective interface for communication between the two elements. While this type of approach may not be suitable in many specific and critical applications, it is ideal for many others where general purpose PC can be used. 
+
+
+
+
+
+\section{Objectives}
+	As a part of syllabus of IOE, students of III${}^{rd}$ yr II${}^{nd}$ part are required to carry out a mini project. This project of ours is primarily intended for the fulfillment of the same. But we are committed to make this project not \emph{just another project}, we are expecting some real usefulness beside completing the requirement together with learning basic hardware electronics coupled with software interface.\\
+
+	We hope to learn a great deal of electronics on the application level.\\
+
+	Some of the objectives can be listed as:\\
+	
+	\begin{enumerate}
+		\item To fulfill the course requirement.
+		\item To learn software and hardware integration on real scale
+		\item To learn the micro-controller programming
+		\item To learn to develop the hardware circuitry through PCB technique
+		\item To create easily affordable oscilloscope for students.
+	\end{enumerate}
+
+	\section{Hardware Selection and Software}
+		Different hardware components used in the project are described in brief in the following section. Micro-controller is the primary hardware used and the major hardware is the display unit of computer.
+	\subsection{Microcontroller}
+		We have used ATMEGA16 as the Micro-controller. It has a built in ADC of 10-bit resolution and can run at a clock frequency 16MHz which is sufficient for our requirement of the ADC conversion rate.
+
+		\begin{figure}[h]	
+			\centering
+			\includegraphics[scale=.35]{Images/Atmega16PinOut.png}
+			\caption{Atmega16 Pinout}
+			\label{fig:PinOut}
+		\end{figure}
+
+Also it provides 16KB flash memory which is sufficient for our project.
+
+
+
+\subsection{Voltage attenuator}
+Since the input voltage of the Microcontroller is just 5V, and our oscilloscope needed to convert wider ranges of voltages into the range 0-5V, for this we needed voltage attenuator. We have decided to use instrumentation amplifier to regulate voltage to that level. The schematic circuit for the voltage attenuator is:
+\begin{figure}[hbtp]
+	\centering
+	\includegraphics[scale=.4]{./Images/Amplifier.png}
+	\caption{Instrumentation Amplifier}
+\end{figure}
+
+
+\subsection{Program Compiler and Up-loader}	
+We have even made our own programming software interface. This utilizes the \emph{avr-gcc} compiler and uses avrdude to interface the programmer and the software interface. This can be used to upload program to various variants of atmega microcontroller.\\ This can be used to program other microcontrollers of the AVR family. One snapshot of the program compiler is given in Figure \ref{fig:Programmer}.
+
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=.5]{Images/AvrGUI.png}
+\caption{Programmer Software Interface}
+\label{fig:Programmer}
+\end{figure}
+
+This too is made in C++ programming language with wxWidget and can easily be extended to write program for other microcontrollers too. 
+
+\section{System Block Diagram}
+	The system block diagram of the system overview is given in Figure\ref{fig:BlockDiagram}. Various stages of input processing and output are shown in this figure.
+	\begin{figure}[hbtp]
+		\centering
+		\includegraphics[scale=.6]{Images/BlockDiagram.png}
+		\caption{Block Diagram}
+		\label{fig:BlockDiagram}
+	\end{figure}
+
+
+\section{Circuit Schematics}
+The usb oscilloscope circuit is a fairly simple circuit with not complications and difficulty in understanding. It just has the interface to input the signal and has necessary mechanisms to convert the signals and send to PC via USB cable.
+
+\begin{figure}[hbtp]
+	\centering
+	\includegraphics[scale=.4]{Images/CircuitTwoD.png}
+	\caption{Circuit schematics }
+\end{figure}
+
+\section{Basic operation}
+At first the analog input signals are fed to an ADC to convert them to digital values that a computer can compute. For this very project, the built-in ADC available in the microcontroller Atmega16 is used. Among four ports of Atmega16, Port A provides the features of ADC.
+
+\subsection{Inputting a signal}
+
+To use the oscilloscope, desired signal should be input  to the input connector of the oscilloscope. Coaxial connectors are used for inputting the signals. Since this is a dual channel oscilloscope, two connectors are used. BNC connectors are the first choice to reduce noise and safely transfer the signal from source to the Oscilloscope device.
+Basic operation: 
+
+
+\subsection{Analog to Digital Conversion}
+The ATmega16 features a 10-bit successive approximation ADC. The ADC is connected to an
+8-channel Analog Multiplexer which allows 8 single-ended voltage inputs constructed from the
+pins of Port A. The single-ended voltage inputs refer to 0V (GND). But for our purpose we have used only 8 bit resolution of the ADC.
+
+The ADC contains a Sample and Hold circuit which ensures that the input voltage to the ADC is
+held at a constant level during conversion.
+
+The ADC is fairly fast  
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|c|c|}
+		\hline 
+		Condition & Sample Hold Cycles & Comversion Time \\ 
+		\hline 
+		First Conversion & 13.5 & 13 \\ 
+		\hline 
+		Normol Conversion & 1.5 & 13 \\ 
+		\hline 
+		Auto Triggered conversions & 2 & 13.5 \\ 
+		\hline 
+		Normal Conversions Differential & 1.5/2.5 & 13/14 \\ 
+		\hline 
+	\end{tabular}
+	
+	\caption{ADC Conversion Time} 
+	\label{tab:ADCCnvTime}
+\end{table}
+In Table \ref{tab:ADCCnvTime} we can see the conversion time of the Atmega16
+The ADC converts an analog input voltage to a 10-bit digital value through successive approximation. The minimum value represents GND and the maximum value represents the voltage on the AREF pin minus 1 LSB. Optionally, AVCC or an internal 2.56V reference voltage may be connected to the AREF pin by writing to the REFSn bits in the ADMUX Register. The internal voltage reference may thus be decoupled by an external capacitor at the AREF pin to improve noise immunity.\footnote{This is taken form Atmega16 datasheet}
+
+\subsection{Sensing}
+First the input signal will be converted into Digital signal with a high speed ADC. If the frequency of input signal is $f$ and $n$ samples are taken per cycle of the signal then the frequency of sampling will be:
+\begin{equation}
+	\textit{Sampling Frequency}= f*n
+\end{equation}
+Owing to Nyquist criterion the value of $n$  should be greater than $2$ but this will not suffice to generate smooth signal so we will need $n\geq 100$.\\
+
+If we restrict ourselves with the input frequency of the order of hundred of kilo hertz then. The sampling frequency should be around
+\begin{eqnarray*}
+ \textit{Sampling Frequency}&=&100K*100\\
+ &=& 10MHz\\
+\end{eqnarray*}
+
+So we would require ADC with the output time less than $10^{-7}s$. \\
+
+Also thre is a limitaion of number of bits of output bits of ADC. To minimize the cost and optimize the system performance we would use a $10$bit ADC. Now the rate of generation of data is given bye the relation \\
+\begin{eqnarray*}
+\textit{Data Rate}&=&\textit{no. of bits}*\textit{Sampling Frequency}\\
+&=& \textsl{no.of bits}*f*n\\
+& \approx &10\textsl{bits}*100\textsl{K}*100\\
+&=&100\textsl{Mbps}
+\end{eqnarray*}
+
+Since the speed of USB $2.0$ is $480$Mbps in full speed mode, this data rate can be handled by USB data communication.\\
+
+
+
+\subsection{Communication with PC}
+The communication with PC has two distinct parts
+\begin{enumerate}
+	\item Firmware on Device
+	\item Host Driver Software on PC
+\end{enumerate}
+\subsection{Firmware}
+To make the interface to communicate with pc we have used VUSB library available at \url{http://obdev.net}. This library helps to communicate data between PC and the microcontroller. Our device falls in HID class device. The firmware does the necessary tasks required for preparation of data from ADC and putting it in device buffer. And send data to the PC following the USB protocol.
+
+Since the ADC available in the microcontroller is used, the outputs of ADC, i.e. digital values are stored in a registers of the microcontroller itself. Now the digital values from a register of Atmega16 are continuously fed to the PC through the USB cable following the USB protocols. 
+
+\subsection{Host Software}
+Once the data is received in the computer, the task remaining is to trace out the values on PC screen. For plotting this data into the screen as a function of time, we have prepared a graph plotting software ourselves, which plots the values received at the PC through USB port into the display of the PC making the waveform of the input signals visible. 
+
+Host software again makes use of libusb library to make proper communication with the firmware on the device. A channel is formed between the host software and device through the USB connection.
+
+
+The software interfaces are made in C++ programming language and compiled for Linux Operating system. But the programms are made platform independent and can be easily compiled for other operating systems with just minor changes
+
+\subsection{Graph Plotter}
+We have made a graph plotter in C++ programming language with \textit{WxWidget 3.0.0} library. This plotter will be used to show the graphical representation of the waveform. The interface looks like. It is yet to be improved to give a look and feel like a real oscilloscope interface but nonetheless it servers the basic purpose of user control and displaying.
+\begin{figure}[hbtp]
+	\centering
+	\includegraphics[scale=.4]{Images/DualChannel.png}
+	\caption{Oscilloscope display interface}
+\end{figure}
+Since it is a dual channel oscilloscope features like selection of channel is inherently required and is made but other fancy looks are still to be added. At the moment we can vary the frequency scale and amplitude scale with the obvious requirement of hold.
+
+
+\subsubsection{The Trace}
+The trace is one of the most basic operations of oscilloscope. The oscilloscope draws a trace, which is a horizontal line across the screen. The time base control determines how quickly the trace is drawn. When the voltage becomes negative or positive, the viewer displays a correspondingly positive or negative jump in the trace on screen.
+
+\subsubsection{Vertical and Horizontal Sensitivity control}
+
+
+These controls allow the user to determine the sensitivity, both horizontally and vertically. To accommodate a wide range of input amplitudes, vertical control selects the calibrated sensitivity of the vertical deflection. Similarly horizontal control is used for viewing the signals with wide range of frequencies with relative ease.
+
+\subsubsection{Hold}
+For high frequency signals, it is not possible to find out the signal properties like amplitude and phase if the signal waveform just moves on the PC screen rapidly. For these analyses, sometimes it is necessary to hold the output on the screen.  This control allows the user to hold the screen output for such analyses.
+
+
+\section{Outputs}
+After we completed our project we have tested our oscilloscope for various input signals and observed its output waveform. For some of the input signals the following output waveforms were obsesrved.
+
+\begin{description}
+	\item[Square Wave] For testing periodic signal we produced square wave from a timer circuit. And a very good wave structure with clear rise and fall time was observed.
+	\begin{figure}[hpbt]
+		\centering
+		\includegraphics[scale=.5]{./Images/OutputOne.png}
+		\caption{Square Wave}
+		\label{fig:SquareWave}
+\end{figure}				
+\end{description}
+
+%\input{./Sources/BlockDiagram.tex}
+
+
+Though for now we have just aimed this at students, this oscilloscope might well be used in the sciences, medicine, engineering and telecommunications industry.  This is a general dual channel oscilloscope. So apart from the necessity of special purpose oscilloscope for the purposes like displaying the heart beat as an electrocardiogram, this USB oscilloscope can perform the general tasks.
+
+\section{Features}
+Our oscilloscope has the following features.
+\begin{description}
+
+\item[Dual channel] It is desirable that sometimes we could compare the waveforms of two different inputs. For this purpose, dual channel mode is supported by this oscilloscope. The selection of the required channel can be made by the user through the user interface.
+\item[Frequency range]	The frequency range for an oscilloscope is a very important feature. Modern days equipments and experiments require a very flexible frequency range. This oscilloscope can trace dc to relatively very high frequency signals upto 8Khz.
+\item[Amplification and delay] Our oscilloscope has a software buffer which can hold the the data read from the USB for quite some time. So holding the signal for any period of time is possible. And the captured signal in the buffer can be amplified in any desired level.
+	 
+\item[Self Powered]	Since this USB oscilloscope is USB-powered, this oscilloscope does not require any external power supply. The 5V dc that passes through the $V^+$ wire is enough to power the USB. Therefore just the PC and USB oscilloscope device is enough to display the waveforms of the signals.
+\item[Portability]
+	Oscilloscope available in the labs are quite larger and are almost impossible to carry to the places of our interest. This USB Oscilloscope on other hand is quite small and so portable that it can be carried to any required place.
+\item[Cheap]
+	The cost associated with modern day oscilloscope is well beyond reach of people in general. The cost of this USB Oscilloscope is so cheap that the cost associated with this can attract anyone and everyone. Therefore cost is one of the most prominent features of this USB Oscilloscope.
+	
+\item[Useful for students]
+	This Oscilloscope is prepared targeting the students of engineering and scientific studies for now. This can be very useful for the beginners of electronics projects.
+
+
+\end{description}
+
+\section{Budget}
+The costs of the major components required for this project are listed in the table below. And by the looks of it, the cost of this oscilloscope is going to become very much within reach of a normal student, which is our prime objective. 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|c|c|c|}
+	\hline 
+	\textbf{Component} & \textbf{Qty} & \textbf{Unit Cost} & T\textbf{otal Cost} \\ 
+	\hline 
+	Atmega16 & 1 & 300 & 300 \\ 
+	%\hline 
+	USB Cable & 1 & 100 & 100 \\ 
+	%\hline 
+	BNC Male & 2 & 60 & 120 \\ 
+	%\hline 
+	BNC Female & 2 & 60 & 120 \\ 
+	%\hline 
+	LM555 & 1 & 25 & 25 \\ 
+	%\hline 
+	LM258 & 2 & 20 & 40 \\ 
+	%\hline 
+	Probes & 2 & 50 & 100 \\ 
+		
+	USB B Female Connector & 1 & 100 & 100 \\ 
+	
+	PCB & 1 & 200 & 200 \\ 
+	\hline 
+	Total & {} & {} & 1105 \\ 
+	\hline 
+	\end{tabular} 
+	\caption{Component Cost}
+	\label{tab:CostAnalysis}
+\end{table}
+The basic cost of different components is shown is Table \ref{tab:CostAnalysis}
+\section{Future Enhancements}
+Our oscilloscope is a general purpose one and for now just targeted for the students who desire to be involved in the electronics project. There can be wide range of improvements to this existing system.  
+The user interface of this USB Oscilloscope can be improved and made more user friendly. Cursors moving functionality will be added soon so that the signals from different channels can be compared more effectively.
+Frequency response of this oscilloscope can be increased. Using a very high speed ADC, signals with very high frequency (in MHz range) can be traced.
+By adding the features of storing the data of the signals, the data can be further analyzed and more mathematical characteristics can be explored. 
+Sound recording can also be performed with this device. Then the digital data can be used to analyze and improve the sound quality.
+For now, the reliability of this oscilloscope is not that high. Therefore this can’t be used in some critical and highly sensitive requirements. After improving the frequency response, the reliability of this oscilloscope can be improved vastly. Once the reliability of this oscilloscope becomes improved, this oscilloscope can be used in many other fields like medical, communication  and on the fields where performance is required.  
+\section{Conclusion}
+As per the expectation we have successfully completed the project in the scheduled time. This project has taught us a lot of things on micro-controller programming. Though only the beginning of micro-controller programming, this project has made us pretty excited on building some hardware architecture. Beginning with almost zero knowledge on micro-controller based hardware, this project has made us go through so many e-books and video tutorials. Therefore, we have helped ourselves with self learning and some sort of combined study with the project members.
+
+It was not an easy project though. Transferring the data to the PC from the microcontroller was difficult. However by going through some rigorous research and with some suggestions from experienced friends, we are hereby able to present the USB oscilloscope.
+Apart from the things we learn through this project, we believe this project can also become a quite applicable one in modern day technology. 
+
+\pagebreak
+
+
+\begin{thebibliography}{99}
+\bibitem{} Alexon, J. USB Complete: The Developer’s Guide, Fourth Edition. Lakeview Research LLC, 5310 Chinook Ln., Madison  (1999).
+\bibitem{} Atmega16 Microcontroller datasheet. \url{http://atmel.com}
+
+\bibitem{} Wikipedia the open internet library \url{http://en.wikipedia.org/Oscilloscope}
+\bibitem{} \url{codeandlife.com/VUsb}
+\bibitem{} Hyde, John. USB Design by example Third Edition. Intel University Press, (2002).
+\bibitem{} Terrel David L,Op Amps Design,Applicatoin, and Troubleshooting , Second Edition Elsevier Science (USA),(1996).
+
+\end{thebibliography}
+\end{document}
